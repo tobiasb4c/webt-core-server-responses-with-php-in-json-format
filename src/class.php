@@ -75,6 +75,9 @@ class OST{
         return "{$this->name} from {$this->videoGameName} | Release Date: {$this->releaseDate} \n Song Liste: \n{$this->getSongList()}\n";
     }
 
+    function getRawList(){
+        return $this->songList;
+    }
     function getSongList(){
         return implode("", $this->songList);
     }
