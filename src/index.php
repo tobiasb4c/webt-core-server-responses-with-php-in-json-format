@@ -11,13 +11,11 @@ $c = new Song('Eine Nase', 'Eros', 1, 2.5);
 $d = new Song('lil jeep', 'peep', 1, 2.5);
 $e = new Song('haram', 'nikola', 1, 2.5);
 
-/*
 echo $a->getAllIds();
 echo ' | ';
 echo $a->getId();
 echo ' | ';
 echo $b->getId();
-*/
 
 //OST Class Test
 echo "\n\n---OST \n";
@@ -46,8 +44,18 @@ echo json_encode($ost1, JSON_PRETTY_PRINT);
 
 $osts = $se1->returnData();
 
-
 echo json_encode($osts, JSON_PRETTY_PRINT);
 
-//echo implode("",$ost1->getRawList());
-?>
+//User Story 4
+//GET URL JSON REQUEST
+
+if (isset($_GET["ost_id"])) {
+    foreach ($osts as $ost) {
+        if ($_GET["ost_id"] == $ost->getId()) {
+            echo json_encode($ost, JSON_PRETTY_PRINT);
+            return;
+        }
+    }
+    throw new Exception('ID kann nicht gefunden werden');
+}
+?> 
