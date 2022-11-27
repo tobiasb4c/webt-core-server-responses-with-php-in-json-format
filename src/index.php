@@ -39,6 +39,15 @@ echo $se1;
 
 //User Story 3
 //JSON OST Test
+
 echo "\n\n---JSON OST\n";
-echo $ost1->toJSON();
+
+echo json_encode($ost1, JSON_PRETTY_PRINT);
+
+$osts = $se1->returnData();
+
+
+echo json_encode($osts, JSON_PRETTY_PRINT);
+
+//echo implode("",$ost1->getRawList());
 ?>

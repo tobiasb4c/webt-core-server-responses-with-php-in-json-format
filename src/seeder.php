@@ -24,13 +24,19 @@ class Seeder{
     }
 
     //To string ruft methode returnData Auff
+    
     public function __toString() {
-        return $this->returnData();
+        return "OST1: {$this->ost1}\n OST2: {$this->ost2}\n OST3: {$this->ost3}\n";
     }
+    
 
     //Returns data
     function returnData(){
-        return "OST1: {$this->ost1}\n OST2: {$this->ost2}\n OST3: {$this->ost3}\n";
+        return array(
+            $this->ost1,
+            $this->ost2,
+            $this->ost3,
+    );
     }
 }
 

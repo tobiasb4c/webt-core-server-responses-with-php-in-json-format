@@ -1,7 +1,7 @@
 <?php
 
 //Klasse Song
-class Song{
+class Song implements JsonSerializable{
     //staic array aller vergebenen ids
     static private $ids = [];
 
@@ -29,6 +29,18 @@ class Song{
         $this->duration = $duration;
     }
 
+    public function jsonSerialize() : mixed{
+        $array = array(
+                'id' => $this->id,
+                'name' => $this->name,
+                'artist' => $this->artist,
+                'trackNr' => $this->trackNr,
+                'duration' => $this->duration,
+            );
+        return $array;
+    }
+
+    
     public function __toString() {
         return "    {$this->name} from {$this->artist} | Tracknummer: {$this->trackNr} Dauer: {$this->duration} min \n";
     }
@@ -43,7 +55,7 @@ class Song{
 }
 
 //Klasse OST
-class OST{
+class OST implements JsonSerializable{
     //staic array aller vergebenen ids
     static private $ids = [];
 
@@ -71,17 +83,23 @@ class OST{
         $this->songList = $songList;
     }
 
-    public function toJSON(){
-        $json = array(
+    public function jsonSerialize() : mixed{
+        $array = array(
             'id' => $this->id,
             'name' => $this->name,
             'videoGameName' => $this->videoGameName,
             'releaseDate' => $this->releaseDate,
             'songList' => $this->songList,
         );
-        return json_encode($json);
+        return $array;
     }
 
+    
+    function toJSON(){
+        return json_encode($this->jsonSerialize());
+    }
+
+    
     public function __toString() {
         return "{$this->name} from {$this->videoGameName} | Release Date: {$this->releaseDate} \n Song Liste: \n{$this->getSongList()}\n";
     }
@@ -89,6 +107,7 @@ class OST{
     function getRawList(){
         return $this->songList;
     }
+    
     function getSongList(){
         return implode("", $this->songList);
     }
@@ -100,6 +119,8 @@ class OST{
     function getId(){
         return $this->id;
     }
+    
+    
 }
 
 ?>
