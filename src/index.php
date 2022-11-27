@@ -29,10 +29,16 @@ $ost1 = new OST('Mario Theme', 'Mario', '20.08.2005', $list1);
 
 $ost2 = $ost1;
 $ost3 = $ost1;
+//User Story 2
 //Seeder Class Test
 echo "\n\n---Seeder \n";
 
 $se1 = new Seeder($ost1, $ost2, $ost3);
 
 echo $se1;
+
+//User Story 3
+//JSON OST Test
+echo "\n\n---JSON OST\n";
+echo $ost1->toJSON();
 ?>

@@ -71,6 +71,17 @@ class OST{
         $this->songList = $songList;
     }
 
+    public function toJSON(){
+        $json = array(
+            'id' => $this->id,
+            'name' => $this->name,
+            'videoGameName' => $this->videoGameName,
+            'releaseDate' => $this->releaseDate,
+            'songList' => $this->songList,
+        );
+        return json_encode($json);
+    }
+
     public function __toString() {
         return "{$this->name} from {$this->videoGameName} | Release Date: {$this->releaseDate} \n Song Liste: \n{$this->getSongList()}\n";
     }
